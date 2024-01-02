@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify(beta)</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+      #head{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 80px;
+        width: 100%;
+        background-color: rgb(0, 0, 0);
+      }
+      #navbar-menu { 
+      display: flex;
+      gap: 4em;
+      list-style: none;
+      font-family:arial;
+      font-weight: bold;
+      align-items: center;
+      }
+      #navbar-menu li a{
+      display: flex;
+      text-decoration: none;
+      color: #fff;
+      font-family: gotham;
+      @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttfGothamBold.ttf');
+      }
+      }
+      
+      #navbar-menu li a:hover{
+       color: rgb(0, 255, 13);
+      }
+      button{
+       display: flex;
+       background-color: transparent;
+       color: #fff;
+       font-size: 43px;
+       border: transparent;
+       transform: scale(0.7);
+      }
+      #navbar-icon {
+        display: none;
+        cursor: pointer;
+      }
+      #navbar-icon span {
+        display: block;
+        width: 30px;
+        height: 5px;
+        margin-bottom: 5px;
+        background-color: #fff;
+      }
+      @media screen and (max-width: 768px){
+        #navbar-menu{
+            display: none;
+        }
+        #navbar-icon{
+            display: block;
+        }
+        #navbar-icon.active span:nth-child(2){
+            opacity: 0;
+      }
+      #navbar-icon.active span:nth-child(1){
+            transform: rotate(45deg);
+            margin-top: 10px;
+      }
+      #navbar-icon.active span:nth-child(3){
+        transform: rotate(-45deg);
+            margin-top: -10px;
+      }
+      #navbar-menu.active{
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top:70px;
+      left:0;
+      width: 100%;
+      background-color: #333;
+      padding: 20px;
+      }
+      #navbar-menu.active li{
+        margin: 10px 0;
+      }
+    }
+    #body{
+     display: flex;
+     height: 600px;
+     width: 100%;
+     background-image:  linear-gradient(45deg,rgb(255,0,255),rgb(138,43,226));
+     justify-items: center;
+     align-items: center;
+     color: #fff;
+     font-weight: bold;
+     font-size: 90px;
+     word-wrap: nowrap;
+     @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+    }
+    @media screen and (max-width: 1610px){
+      #body{
+      font-size: 70px;
+      }
+    }
+    @media screen and (max-width: 1510px){
+      #body{
+      font-size: 50px;
+      }
+    }
+    #foto{
+      transform: scale(0.9);
+      margin-top: 76px ;
+    }
+    #button{
+        position: absolute;
+        display: flex;
+        background-color: #fff;
+        color: #000000;
+        cursor: pointer;
+        border-radius: 40px;
+        height: 80px;
+        width: 350px;
+        font-size: 23px;
+        font-weight: bold;
+        align-items: center;
+        margin: 0px -47px;
+        padding: 30px;
+        justify-items: center;
+        justify-content: center;
+    }
+    #button:hover{
+        border: #000000 5px solid;
+        font-size: 24px; 
+        font-weight: bold;
+    }
+    #button2{
+        position: absolute;
+        display: flex;
+        background-color: #fff;
+        color: #000000;
+        cursor: pointer;
+        border-radius: 40px;
+        height: 80px;
+        width: 350px;
+        font-size: 23px;
+        font-weight: bold;
+        align-items: center;
+        margin: 0px -47px;
+        padding: 30px;
+        justify-items: center;
+        justify-content: center;
+        margin-top: 10%;
+    }
+    #button2:hover{
+        border: #000000 5px solid;
+        font-size: 24px; 
+        font-weight: bold;
+    }
+    @media screen and (max-width: 1610px){
+      #button2{
+        margin-top: 20% ;
+      }
+    }
+   #body-2{
+    display: flex;
+    height: 550px;
+    width: 95%;
+    background-color: #ffffff;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 50px;
+    margin: 0px 20px;
+    @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+   }
+   #body-3{
+   display: flex;
+   align-items: center;
+   gap: 5em;
+   }
+   #circle-1{
+    display: flex;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-image:  linear-gradient(1deg,rgb(134, 4, 255)20%,rgb(255,0,255));
+    justify-content: space-evenly;
+    align-items: center ;
+    @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+   }
+   #circle-2{
+    display: flex;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-image:  linear-gradient(1deg,rgb(134, 4, 255)20%,rgb(255,0,255));
+    justify-content: space-evenly;
+    align-items: center;
+   }
+   
+   #circle-3{
+    display: flex;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-image:  linear-gradient(1deg,rgb(134, 4, 255)20%,rgb(255,0,255));
+    justify-content: space-evenly;
+    align-items: center;
+   }
+   #circle-4{
+    display: flex;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-image:  linear-gradient(1deg,rgb(134, 4, 255)20%,rgb(255,0,255));
+    justify-content: space-evenly;
+    align-items: center;
+   }
+   #body-4{
+    display: flex;
+    height: 440px;
+    width: 100%;
+    background-image:  linear-gradient(1deg,rgb(115, 0, 255),rgb(193, 7, 255)90%);
+    color: #fff;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    text-align: center;
+    @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+   }
+  #body-5{
+   display: flex;
+   height: 600px;
+   width: 100%;
+   font-weight: bold;
+   color: #000000;
+   justify-content: center;
+   @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+  }
+  #body-6{
+   display: flex;  
+   height: 450px;
+   width: 100%;
+   background-image:  linear-gradient(45deg,rgb(255,0,255),rgb(138,43,226));
+   color: #fff;
+   font-weight: bold;
+   font-size: 90px;
+  justify-content:center;
+  align-items: center;
+  @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+  }
+ h1{
+    position: absolute;
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: 5%;
+    margin-left: 35%;
+    @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+ }
+ h4{
+ position: absolute;
+ font-weight: bold;
+ font-size: 40px;
+ margin-top: 5%;
+ margin-left: 42%;
+ @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+}
+h6{
+color: #818181;
+font-weight: bold;
+font-size: 11px;
+@font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+}
+h7{
+color: #818181;
+font-weight: bold;
+font-size: 11px;
+@font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+}
+ #text1{
+ position: absolute;
+ height: 100px; 
+ width: 300px;
+ font-size: 15px;
+ word-wrap:  nowrap;
+ margin-top: 350px;
+ text-align: center;
+ }
+ #text2{
+ position: absolute;
+ height: 100px; 
+ width: 300px;
+ font-size: 13px;
+ word-wrap:  nowrap;
+ margin-top: 350px;
+ text-align: center;
+ }
+ #text3{
+ position: absolute;
+ height: 100px; 
+ width: 300px;
+ font-size: 13px;
+ word-wrap:  nowrap;
+ margin-top: 350px;
+ text-align: center;
+ }
+ #text4{
+ position: absolute;
+ height: 100px; 
+ width: 300px;
+ font-size: 13px;
+ word-wrap:  nowrap;
+ margin-top: 350px;
+ text-align: center;
+ }
+ #text5{
+ color:#fff ;
+ font-size: 18px;
+ margin: 60px ;
+}
+#text6{
+ color:#fff ;
+ font-size: 18px;
+ margin: 60px ;
+}
+#text7{
+ color:#fff ;
+ font-size: 18px;
+ margin: 60px ;
+}
+#text8{
+ display: flex;
+ color:#fff ;
+ font-size: 10px;
+ justify-content:left;
+ gap: 3em;
+ margin-left: 350px;
+ margin-top: 60px;
+}
+.b1{
+  display: flex;
+  height: 80px;
+  width: 900px;
+  color: #000000;
+  background-color: #ffffff;
+  font-size: 17px;
+  justify-content: left;
+  align-items: center;
+  margin: 2px;
+  padding: 0px 40px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #d6d0d04e;
+  border-top: #fff;
+  border-left:#fff ;
+  border-right:#fff ;
+  @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+}
+.b1:hover{
+background-color: #49474728;
+text-decoration: underline;
+
+}
+#content{
+  display: block;
+  margin-top: 10%;
+  cursor: pointer;
+}
+footer{
+  height: 500px;
+  width: 100%;
+  background-color: #000000;
+}
+#rodape{
+display: flex;
+justify-content: center;
+gap: 3em;
+align-content: center;
+}
+#logo{
+  margin: 40px 30px;
+}
+#instagram,#twitter,#facebook{
+  position: relative;
+  display: flex;
+  height: 60px;
+  width: 60px;
+  background-color: #333;
+  border-radius: 100%;
+  margin: 40px 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#instagram::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(insta-hover.png); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px 40px;
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+}
+#instagram:hover::before{
+  opacity: 1; 
+}
+#instagram:hover img{
+  opacity: 0; 
+}
+#twitter::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(twitt-hover.png); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px 40px;
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+}
+#twitter:hover::before{
+  opacity: 1; 
+}
+#twitter:hover img{
+  opacity: 0;
+}
+#facebook::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(face-hover.png); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px 40px;
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+}
+#facebook:hover::before{
+  opacity: 1; 
+}
+#facebook:hover img{
+  opacity: 0; 
+}
+#social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 10px;
+  width: 150px;
+  gap: 10px;
+  overflow: hidden;
+}
+#social-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  transition: opacity 0.3s ease;
+}
+p1{
+ font-size: 15px;
+}
+p{
+  @font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+}
+p:hover{
+color: #0afd2fe2;
+@font-face {
+        font-family: GothamBold
+        src: url('GothamBold.ttf');
+      }
+}
+h7:hover{
+color: #0afd2fe2;
+cursor: pointer;
+}
+    </style>
+</head>
+<body>
+ <!--menu-topo-->
+    <header id="head">
+        <div> 
+        <a href="https://imagem.app/image/b4IHda"><img src="https://a.imagem.app/b4IHda.png" alt="b4IHda.png" border="0" height="40" width="130"/></a>
+        </div>
+       <ul id="navbar-menu">
+        <li>
+          <a href="#">Premium</a>
+        </li>
+        <li>
+          <a href="#">Suporte</a>
+        </li>
+        <li>
+          <a href="#">Baixar</a>
+        </li>
+        <li>
+          <a href="#">|</a>
+        </li>
+        <li>
+            <a href="https://imagem.app/image/bvF1Jv"><img src="https://a.imagem.app/bvF1Jv.png" alt="bvF1Jv.png" border="0" height="45" width="45"/></a>
+        </li>
+    </ul>
+       <div id="navbar-icon">
+         <span></span>
+         <span></span>
+         <span></span>
+       </div>
+    </header>
+    <!--menu-corpo-->
+  <section>
+     <div id="body">
+       <a id="foto" href="https://imagem.app/image/bv5vEv"><img src="https://a.imagem.app/bv5vEv.png" alt="bv5vEv.png" border="0"/></a>
+      <p2>Escute milhões de 
+         <br> 
+        músicas e podcasts de graça.
+        <br>
+        <button onclick="free()" id="button">BAIXE O SPOTIFY FREE</button>
+      </p2>
+    </div>
+    <h1>Por que escolher o Spotify?</h1>
+  <div id="body-2">
+    <div id="body-3"> 
+     <div id="circle-1">
+        <img src="play.png" height="70" width="70">
+       <div id="text1">
+         <h2>Ouça suas favoritas.</h2>
+         <br>
+         <p1>Ouça suas músicas prediletas <br> e descubra novas músicas e <br> podcasts.</p1>
+       </div>
+     </div>
+     <div id="circle-2">
+        <img src="playlist.png" height="" width="">
+        <div id="text2">
+            <h2>Playlists mais fáceis de usar..</h2>
+            <br>
+            <p1>Vamos te ajudar a criar playlists. <br>  Ou você pode curtir playlists <br>  criadas por especialistas em <br> música.</p1>
+        </div>
+     </div>
+     <div id="circle-3">
+        <img src="love.png" height=" 80 " width="80">
+        <div id="text3">
+            <h2>Do jeitinho que você gosta.</h2>
+            <br>
+            <p1>Conte pra gente o que você <br> gosta de ouvir, e nós vamos <br> recomendar músicas para você.</p1>
+        </div>
+     </div>
+     <div id="circle-4">
+        <img src="save.png" height=" 80 " width="80" >
+        <div id="text4">
+            <h2>Economize seu pacote de dados..</h2>
+            <br>
+            <p1>Para consumir menos dados <br> ao ouvir música, ative a Economia <br> de dados em Configurações.
+            </p1>
+        </div>
+     </div>
+     </div>
+   </div>
+  </div>
+ <div id="body-4">
+  <h3>É grátis. <br>
+    Não precisa de cartão de crédito.
+  </h3>
+ </div>
+ <h4>Alguma dúvida?</h4>
+ <div id="body-5">
+  <div id="content">
+   <a id="pergunta 1" class="b1" href="#">Como faço para criar uma playlist?</a>
+   <a id="pergunta 2" class="b1" href="#">Como faço para ativar o modo de Economia de dados?</a>
+   <a id="pergunta 3"  class="b1" href="#">Só é possível ouvir música em ordem aleatória?</a>
+   <a id="pergunta 4" class="b1" href="#">Onde posso encontrar podcasts?</a>
+
+   <div id="resposta1" style="display: none;">
+    <p>As playlists são uma ótima maneira de criar coleções de músicas, seja para só você ouvir ou para compartilhar.
+
+      Para criar uma:
+      
+      1. Clique na “Sua Biblioteca”.
+      2. Clique em CRIAR.
+      3. Dê um nome para a playlist.
+      4. Comece a incluir algumas músicas (enquanto recomendamos outras).</p>
+  </div>
+  <div id="resposta2" style="display: none;">
+    <p>1. Clique em Início.
+      2. Clique em Configurações.
+      3. Clique em Economia de dados.
+      4. Ative a “Economia de dados”.</p>
+  </div>
+  <div id="resposta3" style="display: none;">
+    <p>As playlists com o ícone de ordem aleatória tocam dessa forma.
+
+      Nas playlists que não têm esse ícone, você pode clicar em qualquer música para ouvir.</p>
+  </div>
+  <div id="resposta4" style="display: none;">
+    <p>Clique em Buscar. Em Navegar por todas as seções, clique em Podcasts.</p>
+  </div>
+
+  </div>
+ </div>
+ <div id="body-6">
+ <h5>Gostou? Então aperte o play.</h5> 
+  <button onclick="free()" id="button2">BAIXE O SPOTIFY FREE</button>
+</div>
+ <!--menu-rodapé-->
+ <footer>
+<div id="rodape">
+  <a id="logo" href="https://imagem.app/image/b4IHda"><img src="https://a.imagem.app/b4IHda.png" alt="b4IHda.png" border="0" height="40" width="130"/></a>
+  <div id="text5">
+    <h6>EMPRESA</h6>
+    <br>
+    <p>Sobre</p>
+    <br>
+    <p>Empregos</p>
+    <br>
+    <p>For the Record</p>
+  </div>
+  <div id="text6">
+    <h6>COMUNIDADES</h6>
+    <br>
+    <p>Para Artistas</p>
+    <br>
+    <p>Desenvolvedores</p>
+    <br>
+    <p>Publicidade</p>
+    <br>
+    <p>Investidores</p>
+    <br>
+    <p>Fornecedores</p>
+  </div>
+  <div id="text7">
+    <h6>LINKS ÚTEIS</h6>
+    <br>
+    <p>Suporte</p>
+    <br>
+    <p>Player da Web</p>
+    <br>
+    <p>Aplicativo móvel grátis</p>
+  </div>
+  <div id="social-icon">
+   <div id="instagram">
+    <a href="https://www.instagram.com/abelardo_sdm/"><img id="a" src="instagram.png" height="40" width="40"></a> 
+  </div>
+    <div id="twitter">
+   <img id="a" src="twitter.png">
+    </div>
+   <div id="facebook">
+    <img id="a" src="facebook.png">
+ </div>
+</div> 
+</div>
+<div id="text8">
+  <h7>Legal</h7>
+  <h7>Centro de Privacidade</h7>
+  <h7>Política de privacidade</h7>
+  <h7>Cookies</h7>
+  <h7>Sobre anúncios</h7>
+  <h7>Acessibilidade</h7>
+ </div>
+</footer>
+</section>
+<script>
+ 
+  function mostrarResposta(id) {
+    // Esconde todas as respostas
+    hideAllAnswers();
+
+    // Mostra a resposta correspondente
+    var resposta = document.getElementById('resposta' + id);
+    if (resposta) {
+      resposta.style.display = 'block';
+    }
+  }
+
+  // Função para esconder todas as respostas
+  function hideAllAnswers() {
+    var respostas = document.querySelectorAll('[id^="resposta"]');
+    respostas.forEach(function (resposta) {
+      resposta.style.display = 'none';
+    });
+  }
+
+  // Adiciona um evento de clique para cada link de pergunta
+  document.getElementById('pergunta1').addEventListener('click', function () {
+    mostrarResposta(1);
+  });
+
+  document.getElementById('pergunta2').addEventListener('click', function () {
+    mostrarResposta(2);
+  });
+
+  document.getElementById('pergunta3').addEventListener('click', function () {
+    mostrarResposta(3);
+  });
+
+  document.getElementById('pergunta4').addEventListener('click', function () {
+    mostrarResposta(4);
+  });
+ 
+</script>
+
+
+
+<script>(function(g,u,i,d,e,s){g[e]=g[e]||[];var f=u.getElementsByTagName(i)[0];var k=u.createElement(i);k.async=true;k.src='https://static.userguiding.com/media/user-guiding-'+s+'-embedded.js';f.parentNode.insertBefore(k,f);if(g[d])return;var ug=g[d]={q:[]};ug.c=function(n){return function(){ug.q.push([n,arguments])};};var m=['previewGuide','finishPreview','track','identify','hideChecklist','launchChecklist'];for(var j=0;j<m.length;j+=1){ug[m[j]]=ug.c(m[j]);}})(window,document,'script','userGuiding','userGuidingLayer','M7E770248TMID');</script>
+
+<script>
+   window.userGuiding.identify(userId* attributes) 
+    // example with attributes 
+  window.userGuiding.identify('1Ax69i57j0j69i60l4', { 
+  email: 'user@awesome.com', 
+  name: 'Awesome User', 
+   created_at: 1644403436643,})
+  // or just send userId without attributes
+  window.userGuiding.identify('1Ax69i57j0j69i60l4')
+</script>
+<!--End-tb-->
+</body>
+</html>
